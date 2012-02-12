@@ -22,7 +22,7 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
     
-<!-- begin rds
+<!-- begin rds -->
     <servlet>
         <servlet-name>RDSDispatchServlet</servlet-name>
 		<display-name>RDSDispatchServlet</display-name>
@@ -38,7 +38,6 @@
         <servlet-name>RDSDispatchServlet</servlet-name>
         <url-pattern>/CFIDE/main/ide.cfm</url-pattern>
     </servlet-mapping>
-end rds -->
 
     <servlet-mapping>
         <servlet-name>MessageBrokerServlet</servlet-name>

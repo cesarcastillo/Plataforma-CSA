@@ -10,4 +10,10 @@
         <channel ref="my-amf"/>
     </default-channels>
 
+	<destination id = "ControladorUsuario">
+		<properties>
+			<source>controladores.ControladorUsuario</source>
+		</properties>
+	</destination>
+
 </service>
