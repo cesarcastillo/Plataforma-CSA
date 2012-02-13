@@ -8,7 +8,7 @@ import java.sql.*;
 public class ControladorUsuario {
 	
 	public static void main(String args[]){
-		Usuario usuario = obtenerConMatriculaYContrasena("987096", "popo");
+		//Usuario usuario = obtenerConMatriculaYContrasena("987096", "popo");
 	}
 	
 	public static boolean existeMatriculaRegistrada(String matricula){
