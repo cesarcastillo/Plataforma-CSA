@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class ConexionMySQL {
 	private static Connection connection;
-	private static String hostPortDBName = "jdbc:mysql://localhost:3306/laygr_csa";
+	private static String hostPortDBName = "jdbc:mysql://laygr.com:3306/laygr_csa";
 	private static String user = "laygr_csa";
 	private static String password = "csa1234";
 
