@@ -94,9 +94,31 @@ public class ControladorSociedad {
 		}
 	}
 	
-	//obtener todos los usuarios dado un sociedadId el método debe regresar un ArrayList<Usuario>
-	//public static Usuario[] usuariosSociedad(int sociedadId){
-		//String query = "SELECT * FROM Usuario WHERE sociedadId = '" + id + "'";
-		
-	//}
+	//Obtener todos los usuarios dada un -sociedad- el método debe regresar un ArrayList<Usuario>
+	public static Usuario[] usuariosSociedad(Sociedad sociedad){
+		String query = "SELECT * FROM Usuario WHERE sociedadId = '" + sociedad.getId() + "'";
+		Usuario[] usuario = new Usuario [10];
+		try {
+			Connection connection = ConexionMySQL.getConnection();
+			Statement stmt = connection.createStatement();
+			stmt.execute(query, Statement.RETURN_GENERATED_KEYS);
+			ResultSet rs = stmt.getGeneratedKeys();
+			
+			int i = 0;
+			while (rs.next()) {
+				usuario[i].setId(rs.getInt("id"));
+				usuario[i].setTipo(rs.getInt("tipo"));
+				usuario[i].setSociedadId(rs.getInt("sociedadId"));
+				usuario[i].setMatricula(rs.getString("matricula"));
+				usuario[i].setPassword(rs.getString("password"));
+				usuario[i].setNombre(rs.getString("nombre"));
+				usuario[i].setPermisos(rs.getString("permisos"));
+				i++;
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return usuario;
+		}
 }
