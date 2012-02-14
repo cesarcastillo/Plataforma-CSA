@@ -53,7 +53,8 @@ public class ControladorEvento {
 		int id = 0;
 		
 		String query = 
-				"INSERT INTO Evento (saldo, sociedadID VALUES(" +
+				"INSERT INTO Evento (sociedadID, nombre, descripcion, fechaInicio, " +
+				"fechaFin) VALUES(" +
 				"'" + evento.getSociedadId()		+ "', " +
 				"'" + evento.getNombre()			+ "', " +
 				"'" + evento.getDescripcion()		+ "', " +
@@ -66,7 +67,7 @@ public class ControladorEvento {
 			ResultSet rs = stmt.getGeneratedKeys();
 			
 			if (rs.next()) {
-				id = rs.getInt(1);
+				id = rs.getInt("id");
 			}
 
 		} catch (SQLException e) {

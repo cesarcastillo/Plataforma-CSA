@@ -64,7 +64,7 @@ public class ControladorSociedad {
 			ResultSet rs = stmt.getGeneratedKeys();
 			
 			if (rs.next()) {
-				id = rs.getInt(1);
+				id = rs.getInt("id");
 			}
 
 		} catch (SQLException e) {

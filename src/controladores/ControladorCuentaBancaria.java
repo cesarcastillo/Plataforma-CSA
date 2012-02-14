@@ -48,7 +48,7 @@ public class ControladorCuentaBancaria {
 		int id = 0;
 		
 		String query = 
-				"INSERT INTO CuentaBancaria (saldo, sociedadID VALUES(" +
+				"INSERT INTO CuentaBancaria (saldo, sociedadID) VALUES(" +
 				"'" + cuentaBancaria.getSaldo()				+ "', " +
 				"'" + cuentaBancaria.getSociedadId()		+ "')";
 		try {
@@ -58,7 +58,7 @@ public class ControladorCuentaBancaria {
 			ResultSet rs = stmt.getGeneratedKeys();
 			
 			if (rs.next()) {
-				id = rs.getInt(1);
+				id = rs.getInt("id");
 			}
 
 		} catch (SQLException e) {
