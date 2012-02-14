@@ -16,4 +16,22 @@
 		</properties>
 	</destination>
 
+<destination id = "ControladorCuentaBancaria">
+		<properties>
+			<source>controladores.ControladorCuentaBancaria</source>
+		</properties>
+	</destination>
+
+<destination id = "ControladorEvento">
+		<properties>
+			<source>controladores.ControladorEvento</source>
+		</properties>
+	</destination>
+
+<destination id = "ControladorSociedad">
+		<properties>
+			<source>controladores.ControladorSociedad</source>
+		</properties>
+	</destination>
+
 </service>

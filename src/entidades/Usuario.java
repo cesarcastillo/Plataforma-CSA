@@ -10,7 +10,6 @@ public class Usuario {
 	protected String nombre;
 	protected String permisos;
 	
-	
 	//setters y getters (autogenerados)
 	public int getId() {
 		return id;

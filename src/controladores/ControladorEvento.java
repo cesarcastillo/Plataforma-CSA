@@ -3,16 +3,18 @@ package controladores;
 import entidades.Evento;
 import conexion.ConexionMySQL;
 import java.sql.*;
+import java.util.ArrayList;
 
 public class ControladorEvento {
 	
 	public static void main(String args[]){
-		//Empty main
+		ArrayList<Evento> eventos = eventosEnFecha(new java.util.Date());
+		System.out.println(eventos.size());
 	}
 	//Busqueda de Evento por ID
 	public static Evento obtenerEntidadPorId(int id){
 		Evento evento = new Evento();
-		String query = "SELECT * FROM CuentaBancaria WHERE id = '" + id + "'";
+		String query = "SELECT * FROM Evento WHERE id = '" + id + "'";
 		
 		try {
 			Connection connection = ConexionMySQL.getConnection();
@@ -77,13 +79,12 @@ public class ControladorEvento {
 	public static void actualizarEntidad(Evento evento){
 		Connection connection = ConexionMySQL.getConnection();
 		String query =
-				"UPDATE CuentaBancaria SET " +
+				"UPDATE Evento SET " +
 		
-				"sociedadId = '" + 	evento.getSociedadId()		+ "', " +
-				"nombre = '" +  evento.getNombre()				+ "', " +
-				"descripcion = '" +  evento.getDescripcion()	+ "', " +
-				"fechaInicio = '" +  evento.getFechaInicio()	+ "', " +
-				"fechaFin = '" +  evento.getFechaFin()			+ "' " +
+				"sociedadId = '"	+ evento.getSociedadId()		+ "', " +
+				"nombre = '" 		+ evento.getNombre()			+ "', " +
+				"descripcion = '" 	+ evento.getDescripcion()		+ "', " +
+				"fechaFin = '" 		+ evento.getFechaFin()			+ "' " +
 				
 				"where id = '" + evento.getId() + "'";
 
@@ -93,6 +94,41 @@ public class ControladorEvento {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static ArrayList<Evento> eventosEnFecha(java.util.Date fecha){
+		ArrayList<Evento> eventos = new ArrayList<Evento>();
+		Date fechaSQL = new Date(fecha.getTime());
+		
+		String query = "SELECT * FROM Evento WHERE fechaInicio <= ? AND fechaFin >= ?";
+		
+		try {
+			Connection connection = ConexionMySQL.getConnection();
+			PreparedStatement pstmt = connection.prepareStatement(query);
+			pstmt.setDate(1, fechaSQL);
+			pstmt.setDate(2, fechaSQL);
+			
+			System.out.println(pstmt.toString());
+			
+			ResultSet rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				Evento evento = new Evento();
+				
+				evento.setId(rs.getInt("id"));
+				evento.setSociedadId(rs.getInt("sociedadId"));
+				evento.setNombre(rs.getString("nombre"));
+				evento.setDescripcion(rs.getString("descripcion"));
+				evento.setFechaInicio(rs.getDate("fechaInicio"));
+				evento.setFechaFin(rs.getDate("fechaFin"));
+				
+				eventos.add(evento);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return eventos;
 	}
 
 }
